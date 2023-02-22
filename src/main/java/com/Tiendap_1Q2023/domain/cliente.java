@@ -20,7 +20,7 @@ import lombok.Data;
 public class cliente implements Serializable {
 
     private static final long serialVersionUID=1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCliente;
@@ -39,5 +39,6 @@ public class cliente implements Serializable {
         this.telefono = telefono;
     }
 
-    
+
 }
+

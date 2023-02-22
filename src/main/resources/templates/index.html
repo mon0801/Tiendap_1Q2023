@@ -1,50 +1,41 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->'
-<html xmlns:th="http://www.thymeleaf.org">
 
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <!--<div>Saludos desde MVC</div>
-        <p th:text="${Mensaje}"></p>
+        <header th:replace="layout/plantilla::header"/>
+        <h2>Lista de clientes</h2>
+        <a th:href="@{nuevocliente}">Nuevo Cliente</a>
         <br/>
         <br/>
-        <p>Nombre: <span th:text="${ObjetoCliente.nombre}"></span></p>
-        <p>Apellidos: <span th:text="${ObjetoCliente.apellido}"></span></p>
-        <p>Correo: <span th:text="${ObjetoCliente.correo}"></span></p>
-        <p>Telefono: <span th:text="${ObjetoCliente.telefono}"></span></p>-->
-
-        <h1>Lista de clientes</h1>       
-        <div th:if="${cliente != null and !cliente.empy}">          
-            <table border="1">                
-                <thead>                
-                <th>Nombre</th>                
-
-                <th>apellidos</th>                
-                <th>Correo</th>                
-                <th>Telefono</th>               
-                </thead>               
-                <tbody>                   
-                    <tr th:each="item : ${clientes}">                        
-                        <td th:text="${item.nombre}"></td>                        
-                        <td th:text="${item.apellido}"></td>                        
-
-
-                        <td th:text="${item.telefono}"></td>                        
-                        <td th:text="${item.correo}"></td>                        
-                        <td th:text="${item.idCliente}"></td>                  
-                    </tr>                
-                </tbody>            
-            </table>        
-        </div>        
-        <div th:if="${cliente == null or cliente.empy}">           
+        <div th:if="${clientes != null and !clientes.empty}">
+            <table border="1">
+                <thead>
+                <th>Nombre</th>
+                <th>apellidos</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th colspan="2">Acciones</th>
+                </thead>
+                <tbody>
+                    <tr th:each="item:${clientes}">
+                        <td th:text="${item.nombre}"></td>
+                        <td th:text="${item.apellidos}"></td>
+                        <td th:text="${item.telefono}"></td>
+                        <td th:text="${item.correo}"></td>
+                        <td><a th:href="@{/modificarCliente/}+${item.idCliente}">Modificar</a></td>
+                        <td><a th:href="@{/eliminarCliente/}+${item.idCliente}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${clientes == null or clientes.empty}">
             la lista de clientes esta vacia...
         </div>
+        <footer th:replace="layout/plantilla::footer"/>
     </body>
 </html>
