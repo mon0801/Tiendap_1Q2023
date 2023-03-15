@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">    
+    <head>        
+        <title>TODO supply a title</title>        
+        <meta charset="UTF-8">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>    
+    </head>    
+    <body>       
+        <header th:replace="layout/plantilla::header"/>        
+        <div class="contenido">            
+            <h2>Lista de Categorias</h2>           
+            <a th:href="@{/categoria/nuevo}">Nueva Categoria</a>            
+            <br/>           
+            <br/>           
+            <div th:if="${categorias != null and !categorias.empty}">                
+                <table border="1">                    
+                    <thead>                    
+                    <th>Descripcion</th>                    
+                    <th>Activa</th>                    
+                    <th colspan="2">Acciones</th>                    
+                    </thead>                    
+                    <tbody>                        
+                        <tr th:each="item:${categorias}">                            
+                            <td th:text="${item.descripcion}"></td>                            
+                            <td><input type="checkbox"name="activo"th:checked="${item.activo}"disable="tue"></td>                            
+                            <td><a th:href="@{/categoria/modificar/}+${item.idCategoria}">Modificar</a></td>                            
+                            <td><a th:href="@{/categoria/eliminar/}+${item.idCategoria}">Eliminar</a></td>                        
+                        </tr>                    
+                    </tbody>                
+                </table>            
+            </div>           
+            <div th:if="${categorias == null or categorias.empty}">               
+                No tenemos categorias que mostrar......
+            </div>       
+        </div>       
+        <footer th:replace="layout/plantilla::footer"/>    
+    </body>
+</html>
