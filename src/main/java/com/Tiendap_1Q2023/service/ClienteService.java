@@ -15,4 +15,9 @@ public interface ClienteService {
     
     public void save(cliente cliente); // Para insertar o midificar(si viene el idCliente o no)
     public void delete(cliente cliente);
+    
+//    public List<cliente> getClientePorNombre (String nombre);
+//    public List<cliente> getClientePorTelefono (String telefono);
+//    public List<cliente> getClientePorNombreApellidos (String nombre,String apellidos);
+//    
 }

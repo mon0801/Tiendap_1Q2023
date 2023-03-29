@@ -22,14 +22,14 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCategoria;
-    private String categoria;
+    private String descripcion;
     private boolean activo;
 
     public Categoria() {
     }
 
-    public Categoria(String categoria, boolean activo) {
-        this.categoria = categoria;
+    public Categoria(String descripcion, boolean activo) {
+        this.descripcion = descripcion;
         this.activo = activo;
     }
     
