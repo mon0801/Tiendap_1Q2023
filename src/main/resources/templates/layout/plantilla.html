@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="http://www.thymeleaf.org"
+            xmlns:sec="http://thymeleaf.org.thymeleaf-extras-sprintsecurity">
     <head th:fragment="head">
-        <title>Tech Shop</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
         <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
@@ -14,50 +11,68 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </head>
     <body>
-        <header th:fragment="header" class="header">
+        <header th:fragment="header" class="header"> 
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
-                <div class="container">
-                    <a th:href="@{/}" class="navbar-brand">TechShop</a>
-                    <button class="navbar-toggler" data-bs-toggle="collage" data-bs-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>   
+                <div class="container"> <a th:href="@{/}" class="navbar-brand">TechShop</a>
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"> 
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav">
-                            <li class="nav-iteam px-2">
-                                <a class="nav-menu-link nav-link" th:href="@{cliente/listado}"
-                                   th:text="#{plantilla.clientes}">Clientes</a>
+                    <div class="collapse navbar-collapse" id="navbarCollapse"> 
+                        <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')"> 
+                            <li class="nav-item px-2"> 
+                                <a class="nav-link" th:href="@{/cliente/listado}" 
+                                                                      th:text="#{plantilla.clientes}">Clientes</a>
+                            </li> 
+                            <li class="nav-item px-2">
+                                <a class="nav-link" th:href="@{/categoria/listado}" 
+                                                                      th:text="#{plantilla.categorias}">Categorías</a> 
+                            </li> 
+                            <li class="nav-item px-2">
+                                <a class="nav-link" th:href="@{/articulo/listado}" 
+                                                                      th:text="#{plantilla.articulos}">Artículos</a> 
                             </li>
-                            <li class="nav-iteam px-2">
-                                <a class="nav-menu-link nav-link" th:href="@{categoria/listado}"
-                                   th:text="#{plantilla.categorias}">Categorias</a>
-                            </li>
-                            <li class="nav-iteam px-2">
-                                <a class="nav-menu-link nav-link" th:href="@{articulo/listado}"
-                                   th:text="#{plantilla.articulos}">Articulos</a>
-                            </li>
-
-                        </ul>
-                        <ul class="navbar-nav ml auto">
+                        </ul> 
+                        <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()"> 
                             <li class="nav-item mr-3">
-                                <a href="#" class="nav-link">
-                                    <i class="fas fa-user"></i>
-                                    <span th:text="#{plantilla.bienvenido}">Bienvenido</span>
-                                    <span sec:authentication="name">Usuario</span>
-                                </a>
-                                <li class="nav-item">
-                                    <form method="POST" th:action="@{/logout}">
-                                        <a href="#" onclick="this.parentNode.submit();" class="nav-link">
-                                            <i class="fas fa-user-times"></i>[[#{plantilla.logout}]]
-                                        </a>
-                                </div>
-                                </div>
-                                </nav>
-                                </header>
-                                <footer th:fragment="footer" class="footer">
-                                    <p>&COPY;[[#{plantilla.derechos}]]
-                                        <a th:href="@{/(lang=es)}">ES</a>
-                                        <a th:href="@{/(lang=en)}">EN</a>
-                                    </p>
-                                </footer>
-                                </body>
-                                </html>
+                                <a href="#" class="nav-link"> 
+                                    <i class="fas fa-user"></i> 
+                                    <span th:text="#{plantilla.bienvenido}">Bienvenido</span> 
+                                    <span sec:authentication="name">Usuario</span> 
+                                </a> 
+                            </li> 
+                            <li class="nav-item"> 
+                                <form method="POST" th:action="@{/logout}">
+                                    <button type="submit" class="nav-link btn btn-link" style="color: #fff"> 
+                                        <i class="fas fa-user-times"></i> <span th:text="#{plantilla.logout}">Cerrar sesión</span>
+                                    </button> 
+                                </form> 
+                            </li> 
+                        </ul> 
+                        <ul class="navbar-nav" sec:authorize="!isAuthenticated()">              
+                            <li class="nav-item">    
+                                <a class="nav-link" th:href="@{/login}"><i class="fas fa-sign-in-alt"> Login</i></a>             
+                            </li>             
+                        </ul>   
+                    </div> 
+                </div> 
+            </nav> 
+        </header>
+        <footer th:fragment="footer" class="position-fixed bottom-0 start-0 end-0 bg-info text-white mt-5 p-2">
+            <div class="container">
+                <div class="col">
+                    <p class="lead text-center">
+                        &COPY [[#{plantilla.derechos}]]
+
+                         
+
+                                                <a th:href="@{/(lang=es)}">ES</a> |
+
+                         
+
+                                                <a th:href="@{/(lang=en)}">EN</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
