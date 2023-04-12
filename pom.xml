@@ -74,6 +74,17 @@
             <artifactId>webjars-locator</artifactId>  
             <version>0.46</version>
         </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>   
+        <groupId>javax.validation</groupId>    
+        <artifactId>validation-api</artifactId>            
+        <version>2.0.1.Final</version>        
+    </dependency>
     </dependencies>
 
     <build>

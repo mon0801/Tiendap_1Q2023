@@ -3,8 +3,8 @@
       xmlns:sec="http://thymeleaft.org/extras/spring-security">
     <head th:replace="layout/plantilla :: head">
         <title>TechShop</title>
- 
-  <header th:replace="layout/plantilla :: header"/>
+
+        <header th:replace="layout/plantilla :: header"/>
         <div class="container">
             <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
             <div class="row row-cols-3" th:if="${articulos != null and !articulos.empty}">
@@ -13,15 +13,20 @@
                     <div class="card-body">
                         <h5 class="card-title">[[${articulo.descripcion}]]</h5>
                         <h6 class="card-subtitle mb-2 text-muted text-end">¢[[${#numbers.formatDecimal(articulo.precio, 1, 'DEFAULT', 2, 'DEFAULT')}]]</h6>
+                        <figure>
+                            <figcaption>
+                                <img th:scr="@{$articulo.rutaImagen}" height="150" />
+                            </figcaption>
+                        </figure>
                         <a class="card-link" th:href="@{/carrito/agregar/} + ${articulo.idArticulo}">[[#{articulo.comprar}]]</a>
                         <p class="card-text">[[${articulo.detalle}]]</p>                        
                     </div>
                 </div>          
             </div>            
-             <div th:if="${articulos == null or articulos.empty}"  th:text="#{articulo.no_mostrar}">
+            <div th:if="${articulos == null or articulos.empty}"  th:text="#{articulo.no_mostrar}">
                 No tenemos lista de articulos que mostrar...
             </div>
         </div>        
         <footer th:replace="layout/plantilla :: footer"/>    
-    </body>
+        </body>
 </html>

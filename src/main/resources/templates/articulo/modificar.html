@@ -27,7 +27,7 @@
                     <br/> 
                     <label for="detalle" th:text="#{articulo.detalle}">Detalle:</label>
                     <br/> 
-                    <textarea name="detalle" th:field="*{detalle}" rows="6" cols="50"/><br/> 
+                     <input name="detalle" th:field="*{detalle}" rows="6" cols="50"/><br/>
                     <label for="precio" th:text="#{articulo.precio}">Precio:</label>
                     <br/> 
                     <input type="number" name="precio" th:field="*{precio}"/>
@@ -39,6 +39,9 @@
                     <label for="activo" th:text="#{articulo.activo}">Activo:</label><br/> 
                     <input type="checkbox" name="activo" th:field="*{activo}"/>
                     <br/> 
+                    <label for="rutaImagen">Detalle:</label><br/>      
+                    <input name="rutaImagen" th:field="*{rutaImagen}" rows="6" cols="50"/><br/>
+                    
                     <input type="submit" name="guardar" th:value="#{accion.guardar}"/> 
             </form> 
         </div> 
